@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Gestión de Bandas Musicales</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .full-height {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Navbar -->
+    <nav class="bg-gray-800 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-white text-xl font-bold">
+                <a href="index.html" class="hover:text-gray-400">Logo</a>
+            </div>
+            <div>
+                <form action="{{ url_for('gateway.login') }}" method="get" class="inline">
+                    <button type="submit" class="text-white px-4 py-2 hover:bg-gray-700 rounded">Login</button>
+                </form>
+                <form action="{{ url_for('gateway.register') }}" method="get" class="inline ml-2">
+                    <button type="submit" class="text-white px-4 py-2 hover:bg-gray-700 rounded">Registro</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <div class="full-height">
+        <div class="bg-white p-8 rounded-lg shadow-lg max-w-sm w-full">
+            <h2 class="text-2xl font-semibold mb-4">Iniciar Sesión</h2>
+            <form action="/login" method="post">
+                <div class="mb-4">
+                    <label for="username" class="block text-gray-700">Usuario:</label>
+                    <input type="text" id="username" name="username" class="w-full p-2 border border-gray-300 rounded">
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="block text-gray-700">Contraseña:</label>
+                    <input type="password" id="password" name="password" class="w-full p-2 border border-gray-300 rounded">
+                </div>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Iniciar Sesión</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

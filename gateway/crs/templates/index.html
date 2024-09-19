@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Bandas Musicales</title>
+    <!-- Enlace a Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Asegúrate de que el contenido esté centrado verticalmente en la página */
+        .full-height {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Navbar -->
+    <nav class="bg-gray-800 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-white text-xl font-bold">
+                <a href="index.html" class="hover:text-gray-400">Logo</a>
+            </div>
+            <div>
+                <form action="{{ url_for('gateway.login') }}" method="get" class="inline">
+                    <button type="submit" class="text-white px-4 py-2 hover:bg-gray-700 rounded">Login</button>
+                </form>
+                <form action="{{ url_for('gateway.register') }}" method="get" class="inline ml-2">
+                    <button type="submit" class="text-white px-4 py-2 hover:bg-gray-700 rounded">Registro</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <div class="full-height">
+        <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm mx-auto">
+            <h2 class="text-2xl font-semibold mb-4">Bienvenido a la Gestión de Bandas Musicales</h2>
+            <p class="text-gray-700">Nuestra plataforma te permite gestionar toda la información relacionada con tu banda musical. Desde fechas de conciertos hasta planillas de pago y más, aquí encontrarás todas las herramientas necesarias para llevar tu banda al siguiente nivel.</p>
+        </div>
+    </div>
+
+</body>
+</html>
