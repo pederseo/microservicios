@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Eventos</title>
+    <!-- Enlace a Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Estilo adicional para asegurar un diseño centrado */
+        .full-height {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Navbar similar al de la referencia -->
+    <nav class="bg-gray-800 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-white text-xl font-bold">
+                <a href="#" class="hover:text-gray-400">Inicio</a>
+            </div>
+            <div>
+                <form action="{{ url_for('gateway.login') }}" method="get" class="inline">
+                    <button type="submit" class="text-white px-4 py-2 hover:bg-gray-700 rounded">Login</button>
+                </form>
+                <form action="{{ url_for('gateway.registro') }}" method="get" class="inline ml-2">
+                    <button type="submit" class="text-white px-4 py-2 hover:bg-gray-700 rounded">Registro</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenedor principal con tabla centrada -->
+    <div class="full-height">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl">
+            <h2 class="text-2xl font-semibold mb-6 text-center">Listado de Eventos</h2>
+            
+            <!-- Tabla de eventos -->
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-200">
+                    <thead class="bg-gray-800 text-white">
+                        <tr>
+                            <th class="py-3 px-6 text-left">Fecha de Eventos</th>
+                            <th class="py-3 px-6 text-left">Tipo de Evento</th>
+                            <th class="py-3 px-6 text-left">Monto del Evento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for evento in eventos %}
+                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                            <td class="py-4 px-6">{{ evento[0] }}</td>
+                            <td class="py-4 px-6">{{ evento[1] }}</td>
+                            <td class="py-4 px-6">{{ evento[2] }}</td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="3" class="py-4 px-6 text-center text-gray-500">No hay eventos disponibles</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>                    
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

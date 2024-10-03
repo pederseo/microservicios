@@ -1,0 +1,1 @@
+# Archivo vacío para indicar que la carpeta app es un módulo de Python.

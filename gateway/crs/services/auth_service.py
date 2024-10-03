@@ -1,33 +1,49 @@
 import requests
+import jwt
 
-def register(username, password):
+SECRET_KEY = 'admin'
+ALGORITMO = 'HS256'
+
+def registro_usuario(username, password):
     '''funcion para registrar nuevo usuario'''
-    url = f'direccion_url'
+    url = "http://localhost:5000/registro"
 
-    payload = {
-        username,
-        password
+    datos_registro = {
+        "username":username,
+        "password":password
     }
 
-    response = requests.post(url, json=payload)
+    response = requests.post(url, json=datos_registro)
 
     if response.status_code == 200:
         return response.json()
     else:
-        return None
+        return {"error": "en la consulta a la api"}
     
-def login(username, password):
+def login_usuario(username, password):
     '''funcion para autentificar usuario'''
-    url = f'direccion_url'
+    url = "http://localhost:5000/login"
 
-    payload = {
-        username,
-        password
+    datos_login = {
+        "username":username,
+        "password":password
     }
 
-    response = requests.post(url, json=payload)
+    response = requests.post(url, json=datos_login)
 
     if response.status_code == 200:
-        return response.json()
+        token = response.json()
+        return token['acces_token']
     else:
-        return None
+        return {"error": "en la consulta a la api"}
+
+
+def decode_token(token):
+    try:
+        decoded_payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITMO])
+        print(f"token decodificado: {decoded_payload}")
+        return decoded_payload
+    except jwt.ExpiredSignatureError:
+        print("El token ha expirado.")
+    except jwt.InvalidTokenError:
+        print("Token inválido.")
